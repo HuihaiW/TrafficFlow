@@ -40,11 +40,10 @@ for time=2:numberoftimesteps
                     -min(D1(density(xposition,time-1)),S1(density(xposition+1,time-1)))); 
 
            else     %inside
-                density(xposition,time)=density(xposition,time-1)...
+                density(xposition,time)=density(xposition,time-1)...CL
                     +deltat/deltax*(min(D(density(xposition-1,time-1)),S(density(xposition,time-1)))...
                     -min(D(density(xposition,time-1)),S(density(xposition+1,time-1)))); 
            end
-
     end
 end
 
@@ -53,4 +52,8 @@ end
 imagesc(density)
 
 colormap(flipud(bone))
-%colorbar
+colorbar
+set(gca, 'YDir', 'normal');
+axis equal;
+ylim([0 30]);
+set(gca,'CLim',[0 0.6])
