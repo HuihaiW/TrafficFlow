@@ -1,6 +1,4 @@
 function q= S(k)
-%UNTITLED4 Summary of this function goes here
-%   Detailed explanation goes here
 
 v=35 %free flow speed (meter per second)
 w=6  %congestion wave speed (meter per second)

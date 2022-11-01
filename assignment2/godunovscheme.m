@@ -40,7 +40,7 @@ for time=2:numberoftimesteps
                     -min(D1(density(xposition,time-1)),S1(density(xposition+1,time-1)))); 
 
            else     %inside
-                density(xposition,time)=density(xposition,time-1)...CL
+                density(xposition,time)=density(xposition,time-1)...
                     +deltat/deltax*(min(D(density(xposition-1,time-1)),S(density(xposition,time-1)))...
                     -min(D(density(xposition,time-1)),S(density(xposition+1,time-1)))); 
            end
