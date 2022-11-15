@@ -5,28 +5,38 @@
 
 % generation of initial state distribution
 
-kmean0=[0.1;0.05;0.07]; %mean value of inital state
-Cov0=[1E-4,0,0;0,4E-4,0;0,0,1E-4];
+kmean0=[0.1; 0.1; 0.02; 0.2; 0.1]; %mean value of inital state
+Cov0=4E-4*eye(5);
 
 % rejection sampling
 
-n=3001; % number of samples
-i=1
+n=1000; % number of samples
+i=1;
 
 while i<n
     k1=rand()*0.2;
     k2=rand()*0.2;
     k3=rand()*0.2;
+    k4=rand()*0.2;
+    k5=rand()*0.2;
     z=rand();
-    k=[k1;k2;k3];
+    k=[k1;k2;k3;k4;k5];
     if z<exp(-1/2*(k-kmean0)'*Cov0^(-1)*(k-kmean0))
+        fprintf('i \n')
         k1g(i)=k1;
         k2g(i)=k2;% sample accepted
         k3g(i)=k3;
+        k4g(i)=k4;
+        k5g(i)=k5;
+
         i=i+1;
     end
 end
+kall=[k1g;k2g;k3g;k4g;k5g];
+imagesc(kall)
 
+colormap(flipud(bone))
+colorbar
 
 numberofcells=3;
 numberoftimesteps=5;
@@ -92,3 +102,7 @@ end
 
 statecovariancefinaltime=statecovariancefinaltime/(n-1);
 
+imagesc(statecovariancefinaltime)
+
+colormap(flipud(bone))
+colorbar

@@ -20,6 +20,7 @@ while i<n
     z=rand();
     k=[k1;k2;k3];
     if z<exp(-1/2*(k-kmean0)'*Cov0^(-1)*(k-kmean0))
+        fprintf('job done \n')
         k1g(i)=k1;
         k2g(i)=k2;% sample accepted
         k3g(i)=k3;
@@ -70,15 +71,24 @@ end
 finaldensityk1(i)=density(1,numberoftimesteps);
 finaldensityk2(i)=density(2,numberoftimesteps);
 finaldensityk3(i)=density(3,numberoftimesteps);
+finaldensityk4(i)=density(4,numberoftimesteps);
+finaldensityk5(i)=density(5,numberoftimesteps);
+finaldensityk6(i)=density(6,numberoftimesteps);
+finaldensityk7(i)=density(7,numberoftimesteps);
+finaldensityk8(i)=density(8,numberoftimesteps);
+finaldensityk9(i)=density(9,numberoftimesteps);
+finaldensityk10(i)=density(10,numberoftimesteps);
+
 
 end
 
 
-meanvectorfinaltime=[0;0;0];
-statecovariancefinaltime=zeros(3);
+meanvectorfinaltime=[0;0;0;0;0;0;0;0;0;0];
+statecovariancefinaltime=zeros(10);
 
 for i=1:n-1
-    meanvectorfinaltime=meanvectorfinaltime+[finaldensityk1(i);finaldensityk2(i);finaldensityk3(i)];
+    meanvectorfinaltime=meanvectorfinaltime+[finaldensityk1(i);finaldensityk2(i);finaldensityk3(i);finaldensityk4(i)...
+        ;finaldensityk5(i);finaldensityk6(i);finaldensityk7(i);finaldensityk8(i);finaldensityk9(i);finaldensityk10(i)];
 end
 
 
@@ -86,7 +96,8 @@ meanvectorfinaltime=meanvectorfinaltime/(n-1);
 
 
 for i=1:n-1
-    k=[finaldensityk1(i);finaldensityk2(i);finaldensityk3(i)];
+    k=[finaldensityk1(i);finaldensityk2(i);finaldensityk3(i);finaldensityk4(i)...
+        ;finaldensityk5(i);finaldensityk6(i);finaldensityk7(i);finaldensityk8(i);finaldensityk9(i);finaldensityk10(i)];
     statecovariancefinaltime=statecovariancefinaltime+(k-meanvectorfinaltime)*(k-meanvectorfinaltime)';
 end
 
